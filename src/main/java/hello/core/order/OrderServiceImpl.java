@@ -3,7 +3,10 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
@@ -11,6 +14,7 @@ public class OrderServiceImpl implements OrderService{
     //  private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
     // private  DiscountPolicy discountPolicy;
 
+    @Autowired //스프링이 생성할때 자동으로 등록한다. - OrderServiceImpl은 생성자가 하나이기때문에 @Autowired를 생략가능하다
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
