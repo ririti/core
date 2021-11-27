@@ -7,14 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+//@RequiredArgsConstructor// 파이널이 붙는 파라미터를 생성자로 만들어줌
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
-    //  private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
-    // private  DiscountPolicy discountPolicy;
 
-    @Autowired //스프링이 생성할때 자동으로 등록한다. - OrderServiceImpl은 생성자가 하나이기때문에 @Autowired를 생략가능하다
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
