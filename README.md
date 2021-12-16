@@ -219,3 +219,25 @@ Spring이란 JAVA 기술들을 더 쉽게 사용할 수 있게 해주는 오픈�
 ### 롬복과 최신 트렌트
 
 @RequiredArgsConstructor 기능을 사용하면 final이 붙은 필드를 모아서 생성자를 자동으로 만들어준다. 
+
+
+##빈 등록 초기화 소멸 메서드 지정
+
+@Bean(initMethod = "init", destroyMethod = "close") 처럼 초기화, 소멸 메서드를
+지정할 수 있다.
+
+특징
+- 메서드 이름을 자유롭게 줄수있다
+- 스프링 빈이 스프링 코드에 의존하지 않는다 
+- 코드가 아닐 ㅏ설정 정보를 사용하기 때문에 코드를 고칠 수 없는 외부라이브러리에도 초기화 종료메서드를 적용가능
+
+
+###애노테이션 @PostConstruct, @PreDestroy
+특징
+- 최신 스프링에서 가장 권장하는 방법이다. 
+- 애노테이션 하나만 붙이면 되므로 매우 편리 
+- javax.annotation.PostConstruct이기 때문에 다른 컨테이너에서도 동작가능
+
+정리
+- @PostConstruct, @PreDestroy 애노테이션을 사용하는것이 편한다 
+- 코드를 고칠 수 없는 외부 라이브러리를 초기화, 종료해야 하면 @Bean 의 initMethod , destroyMethod 를 사용
